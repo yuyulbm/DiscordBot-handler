@@ -1,6 +1,6 @@
 # Advanced Handler For Discord.js 
 
-** Before Using This **
+### Before Using This 
 
 * put your token in index.js
 * put your mongo db string in handler/index.js
