@@ -44,5 +44,5 @@ module.exports = async (client) => {
          await client.application.commands.set(arrayOfSlashCommands);
     });
 
- await mongoose.connect("You Mongo String").then(() => console.log('Connected to mongodb'));
+ await mongoose.connect("Your Mongo String").then(() => console.log('Connected to mongodb'));
 };
