@@ -2,7 +2,7 @@
 
 ### Before Using This 
 
-* put your [bot token](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=client.login(%22Your%20Token%22)%3B) in index.js and have a [webhook link](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=const-,errorhook,-%3D%20new%20WebhookClient(%7B%22Your)) for errors
+* put your [bot token](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=client.login(%22Your%20Token%22)%3B) in index.js and have a [webhook link](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=const%20errorhook%20%3D%20new%20WebhookClient(%7B%22Your%20webhook%20link%22%7D)) for errors
 * put your mongo db string in [handler/index.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/handler/index.js#:~:text=await%20mongoose.connect(-,%22Your%20Mongo%20String%22,-).then(()%20%3D%3E%20console.log))
 * go to [emoji.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/emojis.js) and change them to yours
 * update ready.js in [events/ready.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/events/ready.js) to your [logs channel](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/events/ready.js#:~:text=%27Your%20logs%20channel%20id%27)
