@@ -14,12 +14,12 @@
 ## How To Use
 ```js
 const { MessageEmbed, Permissions } = require("discord.js");
-const emo = require('../../emojis)//your emojis
+const emo = require('../../emojis)<!--- your emojis --->
 module.exports = {
 name: 'cmd',
-aliases: ["command","test"],//other names for command
-userPerms: ["KICK_MEMBERS"],//user permissions 
-botPerms: ["MANAGE_CHANNELS"],//bot permissions 
+aliases: ["command","test"],<!--- other names for command --->
+userPerms: ["KICK_MEMBERS"],<!--- user permissions ---> 
+botPerms: ["MANAGE_CHANNELS"],<!--- bot permissions ---> 
 msgLimit: [100],//message content limit, i use it for 8ball command so the bot does not get rate limited
 usage: "<@user>",//how to use the command will in the help command
 description: "just a normal command",//description for the command will display in the help command
