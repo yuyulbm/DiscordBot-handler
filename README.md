@@ -11,9 +11,8 @@
 >i dint make the handler i just modified it to make it easy to use the original one is from [here](https://github.com/reconlx/djs-base-handler) 
 >i hope yall enjoy using this handler as i enjoy using it for my bot
 
-### How To Use
-* Create A New Command
-`
+## How To Use
+`js
 const { MessageEmbed, Permissions } = require("discord.js");
 let emo = require('../../emojis')\\your emojis
 module.exports = {
