@@ -12,7 +12,7 @@
 >i hope yall enjoy using this handler as i enjoy using it for my bot
 
 ## How To Use
-`js
+```js
 const { MessageEmbed, Permissions } = require("discord.js");
 let emo = require('../../emojis')\\your emojis
 module.exports = {
@@ -27,4 +27,4 @@ run: async (client, message, args) => {
   message.reply({ content: [`${emo.emoji1} | Hello There`] })
   },
   };
-  `
+  ```
