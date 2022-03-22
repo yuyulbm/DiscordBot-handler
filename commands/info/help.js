@@ -11,57 +11,55 @@ run: async (client, message, args) => {
 
 let custom;
 
-        const data2 = await prefix.findOne({ Guild : message.guildId })
-            .catch(err => console.log(err))
+const data2 = await prefix.findOne({ Guild : message.guildId })
+.catch(err => console.log(err))
         
-        if(data2) {
-            custom = data2.Prefix;
-        } if(!data2) {
-            const prefix = "$"
-                
-            
-            custom = prefix
-        }
+if(data2) {
+custom = data2.Prefix;
+} if(!data2) {
+const prefix = "$"
+custom = prefix
+}
   
 if (!args[0]) {
 
-      let categories = [];
+let categories = [];
 
-      readdirSync("./commands/").forEach((dir) => {
-        const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
-          file.endsWith(".js")
-        );
+readdirSync("./commands/").forEach((dir) => {
+const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
+file.endsWith(".js")
+);
 
-        const cmds = commands.map((command) => {
-          let file = require(`../../commands/${dir}/${command}`);
+const cmds = commands.map((command) => {
+let file = require(`../../commands/${dir}/${command}`);
 
-          if (!file.name) return "No command name.";
+if (!file.name) return "No command name.";
 
-          let name = file.name.replace(".js", "");
+let name = file.name.replace(".js", "");
 
-          return `\`${name}\``;
-        });
+return `\`${name}\``;
+});
 
-        let data = new Object();
+let data = new Object();
 
-        data = {
-          name: dir.toUpperCase(),
-          value: cmds.length === 0 ? "In progress." : cmds.join(" "),
-        };
+data = {
+name: dir.toUpperCase(),
+value: cmds.length === 0 ? "In progress." : cmds.join(" "),
+};
 
-        categories.push(data);
-      });
+categories.push(data);
+});
 
 const row = new MessageActionRow()
-			.addComponents(
-			new MessageButton()
-	        .setLabel('Invite Me')
-          .setStyle('LINK')
-          .setURL('your bot invite'),
-					 new MessageButton()
-	        .setLabel('Support Server')
-          .setStyle('LINK')
-          .setURL('https://discord.gg/j3YamACwPu'),
+.addComponents(
+new MessageButton()
+.setLabel('Invite Me')
+.setStyle('LINK')
+.setURL('your bot invite'),
+new MessageButton()
+.setLabel('Support Server')
+.setStyle('LINK')
+.setURL('https://discord.gg/j3YamACwPu'),
 			);
 
 const embed = new MessageEmbed()
