@@ -1,17 +1,17 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
  
 module.exports = {
-    name: "avatar",
-    description: "Get somones avatar",
+name: "avatar",
+description: "Get somones avatar",
 options: [
-                {
-                    name: "user",
-                    description: "the person you want to view its avatar",
-                    type: "USER",
-                    required: false,
-                },
-            ],
-   run: async (client, interaction, args) => {
+{
+name: "user",
+description: "the person you want to view its avatar",
+type: "USER",
+required: false,
+},
+],
+run: async (client, interaction, args) => {
 const user = await interaction.options.getUser("user") || interaction.user;   
 const embed = new MessageEmbed()
 .setTitle(`${user.tag}'s  Avatar`)
@@ -39,6 +39,6 @@ const linksRow = new MessageActionRow().addComponents(
    .setURL(`${user.displayAvatarURL({format: "webp",size: 1024,})}`),
  )
  
- interaction.editReply({embeds: [embed], components: [linksRow]});
+ interaction.reply({embeds: [embed], components: [linksRow]});
 }
 } 
