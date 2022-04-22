@@ -19,6 +19,7 @@ const emo = require('../../emojis); // your emojis
 
 module.exports = {
 name: 'command',
+
 aliases: ["cmd","test"], // other names for command
 
 userPerms: ["KICK_MEMBERS"], // user permissions
