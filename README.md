@@ -15,6 +15,7 @@
 ## How To Use
 ```js
 const { MessageEmbed, Permissions } = require("discord.js");
+
 const emo = require('../../emojis); // your emojis
 
 module.exports = {
@@ -33,7 +34,9 @@ usage: "<@user>", // how to use the command, dysplays in the help command
 description: "just a normal command", // description for the command, displays in the help command
 
 run: async (client, message, args) => {
- message.reply({ content: [`${emo.emoji1} | Hello There`] })
- },
- };
- ```
+
+message.reply({ content: [`${emo.emoji1} | Hello There`] })
+ 
+},
+};
+```
