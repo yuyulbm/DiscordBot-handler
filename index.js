@@ -1,8 +1,12 @@
 const { Client, Collection, WebhookClient, MessageEmbed } = require("discord.js");
 
 const client = new Client({
-    intents: 32767,
-    restTimeOffset: 0,
+intents: 32767,
+restTimeOffset: 0,
+allowedMentions: {
+parse: ["roles","users"],
+repliedUser: false
+}
 }); 
 
 const errorhook = new WebhookClient({"Your webhook link"}) 
