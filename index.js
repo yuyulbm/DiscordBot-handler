@@ -1,7 +1,6 @@
 const {
 	Client,
 	Collection,
-	WebhookClient,
 	MessageEmbed
 } = require("discord.js");
 
@@ -14,9 +13,7 @@ const client = new Client({
 	}
 });
 
-const errorhook = new WebhookClient({
-	"Your webhook link"
-})
+let errChannel = "Your logs channel id";
 
 module.exports = client;
 client.commands = new Collection();
@@ -45,7 +42,7 @@ process.on("unhandledRejection", (reason, p) => {
 		.setTimestamp()
 		.setColor("#6F8FAF")
 		.setFooter(`httpStatus: ${error.httpStatus}`);
-	errorhook.send({
+	client.channels.cache.get(errChannel).send({
 		embeds: [embed]
 	})
 
@@ -65,7 +62,7 @@ process.on("uncaughtException", (err, origin) => {
 		.setTimestamp()
 		.setColor("#6F8FAF")
 		.setFooter(`[ AntiCrash ]`);
-	errorhook.send({
+	client.channels.cache.get(errChannel).send({
 		embeds: [embed]
 	});
 });
@@ -85,7 +82,7 @@ process.on("multipleResolves", (type, promise, reason) => {
 		.setTimestamp()
 		.setColor("#6F8FAF")
 		.setFooter(`[ AntiCrash ]`);
-	errorhook.send({
+	client.channels.cache.get(errChannel).send({
 		embeds: [embed]
 	});
 });
