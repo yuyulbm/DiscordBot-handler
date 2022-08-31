@@ -19,7 +19,7 @@ client.prefix = async function(message) {
 		custom = data.Prefix;
 	}
 	if (!data) {
-		const prefix = "$"
+		const prefix = '>'
 		custom = prefix
 	}
 	return custom;
