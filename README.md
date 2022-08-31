@@ -1,6 +1,6 @@
-# Advanced Handler For Discord.js 
+# Advanced handler for Discord.js 
 
-### Before Using This 
+### Before using this! 
 
 * put your [bot token](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=client.login(%22Your%20Token%22)%3B) in index.js and have a [webhook link](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/index.js#:~:text=const%20errorhook%20%3D%20new%20WebhookClient(%7B%22Your%20webhook%20link%22%7D)) for errors
 * put your mongo db string in [handler/index.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/handler/index.js#:~:text=await%20mongoose.connect(%22Your%20Mongo%20String%22).then(()%20%3D%3E%20console.log(%27Connected%20to%20mongodb%27))%3B)
@@ -9,7 +9,7 @@
 * to change prefix go to [events/messageCreate.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/events/messageCreate.js#:~:text=%7D%20if(!data)%20%7B-,const%20prefix%20%3D%20%22%24%22,-custom%20%3D%20prefix)
 
 >This is an advanced handler that my bot gentleman uses 
->i dint make the handler i just modified it to make it easy to use the original one is from [here](https://github.com/reconlx/djs-base-handler) 
+>i didn't make the handler i just modified it to make it easy to use the original one is from [here](https://github.com/reconlx/djs-base-handler) 
 >i hope yall enjoy using this handler as i enjoy using it for my bot
 
 ## How To Use
