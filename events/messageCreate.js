@@ -1,43 +1,56 @@
 const client = require("../index");
 const {
 	MessageEmbed,
-	Permissions
+	Permissions,
+	MessageActionRow,
+	MessageButton
 } = require("discord.js")
 const cooldownSchema = require("../models/cooldown")
 const prettyMilliseconds = require('pretty-ms');
-
+const owners_id = ["748597084134834186"];
 const prefix = require('../models/prefix');
-/**
- *
- * @param {Client} client
- * @param {Message} message
- * @param {String[]} args
- */
+
 client.prefix = async function(message) {
 	let custom;
-
 	const data = await prefix.findOne({
-			Guild: message.guildId
-		})
-		.catch(err => console.log(err))
-
+		Guild: message.guildId
+	}).catch(err => console.log(err))
 	if (data) {
 		custom = data.Prefix;
 	}
 	if (!data) {
 		const prefix = "$"
-
-
 		custom = prefix
 	}
 	return custom;
 }
+
 client.on('messageCreate', async message => {
 	if (!message.guild) return
 	const p = await client.prefix(message)
+	const mentionRegex = new RegExp(`^<@!?${client.user.id}>( |)$`);
+	const row = new MessageActionRow()
+		.addComponents(
+			new MessageButton()
+			.setLabel('Invite Me')
+			.setStyle('LINK')
+			.setURL('https://discord.com/api/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands'),
+			new MessageButton()
+			.setLabel('Support Server')
+			.setStyle('LINK')
+			.setURL('https://discord.gg/j3YamACwPu'),
+		);
+	if (message.content.match(mentionRegex)) {
+		const embed = new MessageEmbed()
+			.setDescription(`**Hey ${message.author}, My Prefix Is \`${p}\` If You Need Any Help You Can Join The Support Server**`)
+			.setColor("#6F8FAF")
+		message.reply({
+			embeds: [embed],
+			components: [row]
+		}).catch(err => {})
+	}
 	if (!message.content.startsWith(p)) return;
 	if (message.author.bot) return;
-	if (!message.guild) return;
 	if (!message.member) message.member = await message.guild.fetchMember(message);
 	const args = message.content.slice(p.length).trim().split(/ +/g);
 	const cmd = args.shift().toLowerCase();
@@ -45,9 +58,12 @@ client.on('messageCreate', async message => {
 	const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
 
 	if (!command) return
+
+	if (command?.owner === true && !owners_id.includes(message.author.id)) return
+
 	if (command) {
 
-		if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES")) return;
+		if (!message.guild.me.permissionsIn(message.channel).has("SEND_MESSAGES", "ATTACH_FILES")) return;
 
 		if (!message.member.permissions.has(command.userPerms || [])) {
 			let noPerms = new MessageEmbed()
@@ -114,9 +130,8 @@ client.on('messageCreate', async message => {
 						.setTitle(`${command.cooldownMsg ? command.cooldownMsg.title : "Slow Down!"}`)
 						.setDescription(cooldownMsg)
 						.setColor(`${command.cooldownMsg ? command.cooldownMsg.color : "#6F8FAF"}`)
-					return message.reply({
-						embeds: [cooldownEmbed]
-					})
+					return message.reply({embeds: [cooldownEmbed]})
+					//return message.react("⏳")
 				} else {
 					command.run(client, message, args)
 					await cooldownSchema.findOneAndUpdate({
@@ -127,14 +142,8 @@ client.on('messageCreate', async message => {
 					})
 				}
 			} else {
-				command.run(client, message, args).catch(error => {
-					console.log(error)
-					console.log(error.code || `no code`)
-					const channel = client.channels.cache.get('888526855903248426')
-					channel.send(`\`\`\`yaml\nerror -> ${error}\n\nGuild -> ${message.guild.name}\n\nMessage Author -> ${message.author.id} || ${message.author.username} \n\nMessage content -> ${message.content} \n\nerror code -> ${error.code || 'No code'}\`\`\``)
-					message.reply(`My Apologies But An Error Occured While Trying To Run The Command\n\`\`\`${error}\`\`\``)
-				})
+				command.run(client, message, args)
 			}
 		}
 	}
-})
+});
