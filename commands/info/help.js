@@ -71,7 +71,7 @@ module.exports = {
 				);
 
 			const embed = new MessageEmbed()
-				.setTitle(`${client.emojis.happy} | Need help? here are all my commands\nPrefix: ${custom}`)
+				.setTitle(`${client.emo.happy} | Need help? here are all my commands\nPrefix: ${custom}`)
 				.addFields(categories)
 				.setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL({
 					dynamic: true
