@@ -10,7 +10,7 @@ client.on("ready", async () => {
 	console.log(`Ready! Logged in as ${client.user.tag}\ncurrently in ${servers} servers and watching over ${servercount} members`);
 
 	let ready = new MessageEmbed()
-		.setDescription(`Bot Is Back Online ${client.emojis.happy}`)
+		.setDescription(`Bot Is Back Online ${client.emo.happy}`)
 		.setColor("#6F8FAF")
 		.setTimestamp()
 	client.channels.cache.get('Your logs channel id').send({
