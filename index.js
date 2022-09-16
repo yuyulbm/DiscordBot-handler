@@ -18,7 +18,7 @@ let errChannel = "Your logs channel id";
 module.exports = client;
 client.commands = new Collection();
 client.slashCommands = new Collection();
-client.emojis = require("./emojis");
+client.emo = require("./emojis");
 
 require("./handler")(client);
 
