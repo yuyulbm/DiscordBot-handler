@@ -1,5 +1,5 @@
 # Advanced handler for Discord.js 
-[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/DJj123dj/open-ticket/releases/tag/v3.0.1)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)]()
+[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/Shinpi-Tekita/advanced-handler/releases/tag/v1.0.3)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/discord.js/v/13.12.0)
 
 
 ### Before using this! 
