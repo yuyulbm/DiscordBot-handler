@@ -1,4 +1,6 @@
 # Advanced handler for Discord.js 
+[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/DJj123dj/open-ticket/releases/tag/v3.0.1)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)]()
+
 
 ### Before using this! 
 
