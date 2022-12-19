@@ -13,7 +13,7 @@
 > The prefix for the bot is $
 
 > This is an advanced handler that my bot [Gentleman the cat bot](https://top.gg/bot/870413726711435297) uses.
-> I didn't make the handler i just modified it to make it easy to use the original one is from [here](https://github.com/reconlx/djs-base-handler) 
+> I didn't make the handler i just modified it to make it easy to use, the original one is from [here](https://github.com/reconlx/djs-base-handler). 
 > I hope yall enjoy using this handler as I enjoy using it for my bot.
 
 Join the [discord server](https://discord.gg/j3YamACwPu) for additional help.
