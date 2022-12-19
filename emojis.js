@@ -1,5 +1,5 @@
 module.exports = {
-	happy: '😊',
-	pensive: '😔',
-	other: 'Your discord emoji id',
-}
+  happy: "😊",
+  pensive: "😔",
+  other: "Your discord emoji id",
+};

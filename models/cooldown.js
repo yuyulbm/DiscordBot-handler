@@ -1,18 +1,18 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const cooldown = mongoose.Schema({
   userID: {
     type: String,
-    required: true
+    required: true,
   },
   commandName: {
     type: String,
-    required: true
+    required: true,
   },
   cooldown: {
     type: String,
-    default: 0
-  }
-})
+    default: 0,
+  },
+});
 
-module.exports = mongoose.model("cooldown", cooldown)
+module.exports = mongoose.model("cooldown", cooldown);

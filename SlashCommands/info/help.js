@@ -1,20 +1,28 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const { readdirSync } = require("fs");
-const moment = require("moment");
 const { ButtonPaginationBuilder } = require("spud.js");
+const moment = require("moment");
 const prefix = require("../../models/prefix");
+
 module.exports = {
   name: "help",
-  aliases: ["h"],
   description: "Get some help",
-  usage: "<command name>",
-  run: async (client, message, args) => {
+  options: [
+    {
+      name: "command",
+      description: "get info on a command",
+      type: "STRING",
+      required: false,
+    },
+  ],
+  run: async (client, interaction, args) => {
+    let comman = interaction.options.getString("command");
     let custom;
     const data2 = await prefix
       .findOne({
-        Guild: message.guildId,
+        Guild: interaction.guildId,
       })
-      .catch((err) => {});
+      .catch((err) => console.log(err));
     if (data2) {
       custom = data2.Prefix;
     }
@@ -23,12 +31,11 @@ module.exports = {
       custom = prefix;
     }
 
-    if (!args[0]) {
+    if (!comman) {
       let embed = new MessageEmbed()
-        .setTitle(`**${client.emo.happy} | Need Help?**`)
+        .setTitle(`**${client.emo.smug} | Need Help?**`)
         .setDescription(
-          `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${
-            client.slashCommands.size + client.commands.size
+          `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${client.slashCommands.size + client.commands.size
           }\`\n> **[Invite Me](https://discord.com/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands)**\n> **[Support Server](https://discord.gg/PS38kJh9VC)**\n> **[Vote](https://top.gg/bot/870413726711435297/vote)**\n> **[Website](https://shinpitekita.repl.co/home)**`
         )
         .setColor("#6F8FAF")
@@ -41,13 +48,13 @@ module.exports = {
       //Slash Commands
       let fetched = await client.application.commands.fetch();
       let helpCommand = fetched.filter((v) => v.name === "help");
+      const subCommands = [];
       readdirSync("./SlashCommands/").forEach(async (dir) => {
         const commands = readdirSync(`./SlashCommands/${dir}/`).filter((file) =>
           file.endsWith(".js")
         );
         const cmds = commands.map((command) => {
           let file = require(`../../SlashCommands/${dir}/${command}`);
-
           if (!file.name) return "No command name.";
           let name = file.name.replace(".js", "");
           let commandID = fetched.filter((v) => v.name === name);
@@ -63,8 +70,7 @@ module.exports = {
           new MessageEmbed()
             .setTitle(`**${data.name}**`)
             .setDescription(
-              `**For more information on a command do </${
-                helpCommand.first().name
+              `**For more information on a command do </${helpCommand.first().name
               }:${helpCommand.first().id}> <command>\`\n\n${data.value}**`
             )
             .setColor("#6F8FAF")
@@ -73,7 +79,7 @@ module.exports = {
       });
 
       let sc = await client.commands
-        .filter((c) => c?.owner !== true && c?.staff !== true)
+        .filter(c => c?.owner !== true && c?.staff !== true)
         .map((c) => {
           return `\`${c.name} - ${c.description}\`` || "No Name";
         });
@@ -102,10 +108,16 @@ module.exports = {
           .setTimestamp()
       );
 
-      const pagination = new ButtonPaginationBuilder(message)
+      const pagination = new ButtonPaginationBuilder(interaction)
         .setEmbeds(embeds)
         .setTime(60000)
-        .setFilter(message.author.id, {
+        .replyOption(
+          {
+            interaction: true,
+          },
+          true
+        )
+        .setFilter(interaction.user.id, {
           content: "This interaction isn't for you.",
           ephemeral: true,
         })
@@ -116,20 +128,19 @@ module.exports = {
       const command =
         client.commands
           .filter((c) => c?.owner !== true)
-          .get(args[0].toLowerCase()) ||
+          .get(comman.toLowerCase()) ||
         client.commands
           .filter((c) => c?.owner !== true)
-          .find(
-            (c) => c.aliases && c.aliases.includes(args[0].toLowerCase())
-          ) ||
-        client.slashCommands.get(args[0].toLowerCase());
+          .find((c) => c.aliases && c.aliases.includes(comman.toLowerCase())) ||
+        client.slashCommands.get(comman.toLowerCase());
 
       if (!command) {
         const embed = new MessageEmbed()
           .setTitle(`Invalid Command! Use </help:0> for all of my commands!`)
           .setColor("#6F8FAF");
-        return message.reply({
+        return interaction.reply({
           embeds: [embed],
+          ephemeral: true,
         });
       }
 
@@ -153,12 +164,10 @@ module.exports = {
           {
             name: "USAGE:",
             value: command.usage
-              ? `\`${command?.type === "msg" ? `${custom}` : "/"}${
-                  command.name
-                } ${command.usage}\``
-              : `\`${command?.type === "msg" ? `${custom}` : "/"}${
-                  command.name
-                }\``,
+              ? `\`${command?.type === "msg" ? `${custom}` : "/"}${command.name
+              } ${command.usage}\``
+              : `\`${command?.type === "msg" ? `${custom}` : "/"}${command.name
+              }\``,
           },
           {
             name: "DESCRIPTION:",
@@ -168,14 +177,14 @@ module.exports = {
           }
         )
         .setFooter({
-          text: `Requested by ${message.author.tag}`,
-          iconURL: message.author.displayAvatarURL({
+          text: `Requested by ${interaction.user.tag}`,
+          iconURL: interaction.user.displayAvatarURL({
             dynamic: true,
           }),
         })
         .setTimestamp()
         .setColor("#6F8FAF");
-      return message.reply({
+      return interaction.reply({
         embeds: [embed],
       });
     }
