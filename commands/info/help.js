@@ -30,7 +30,7 @@ module.exports = {
           `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${client.slashCommands.size + client.commands.size
           }\`\n> **[Invite Me](https://discord.com/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands)**\n> **[Support Server](https://discord.gg/PS38kJh9VC)**\n> **[Vote](https://top.gg/bot/870413726711435297/vote)**\n> **[Website](https://shinpitekita.repl.co/home)**`
         )
-        .setColor("#6F8FAF")
+        .setColor("#1F51FF")
         .setTimestamp();
 
       let embeds = [];
@@ -65,7 +65,7 @@ module.exports = {
               `**For more information on a command do </${helpCommand.first().name
               }:${helpCommand.first().id}> <command>\`\n\n${data.value}**`
             )
-            .setColor("#6F8FAF")
+            .setColor("#1F51FF")
             .setTimestamp()
         );
       });
@@ -84,7 +84,7 @@ module.exports = {
               ",\n"
             )}**`
           )
-          .setColor("#6F8FAF")
+          .setColor("#1F51FF")
           .setTimestamp()
       );
 
@@ -96,7 +96,7 @@ module.exports = {
               .utc(client.user.createdAt)
               .format("dddd, MMMM Do YYYY")}`
           )
-          .setColor("#6F8FAF")
+          .setColor("#1F51FF")
           .setTimestamp()
       );
 
@@ -107,6 +107,7 @@ module.exports = {
           content: "This interaction isn't for you.",
           ephemeral: true,
         })
+        .trash(true)
         .fastSkip(true);
 
       pagination.send();
@@ -125,7 +126,7 @@ module.exports = {
       if (!command) {
         const embed = new MessageEmbed()
           .setTitle(`Invalid Command! Use </help:0> for all of my commands!`)
-          .setColor("#6F8FAF");
+          .setColor("#1F51FF");
         return message.reply({
           embeds: [embed],
         });
@@ -170,7 +171,7 @@ module.exports = {
           }),
         })
         .setTimestamp()
-        .setColor("#6F8FAF");
+        .setColor("#1F51FF");
       return message.reply({
         embeds: [embed],
       });
