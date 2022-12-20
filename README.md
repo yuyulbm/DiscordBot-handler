@@ -1,6 +1,5 @@
 # Advanced handler for Discord.js 
-[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/Shinpi-Tekita/advanced-handler/releases/tag/v1.0.3)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/discord.js/v/13.12.0) [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/home)
-
+[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.4-brightgreen.svg?style=flat-square)](https://github.com/Shinpi-Tekita/advanced-handler/releases/tag/v1.0.4)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/discord.js/v/13.12.0) [![stars](https://img.shields.io/github/stars/Shinpi-Tekita/advanced-handler?style=social](https://github.com/Shinpi-Tekita/advanced-handler) [![MongoDB](https://img.shields.io/badge/MongoDB-brightgreen.svg?style=flat-square&logo=mongodb)](https://www.mongodb.com/home)
 
 ### Before using this! 
 
@@ -9,8 +8,6 @@
 * Go to [emoji.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/a3a0461549f865440464dce3a38e6fa5cb99b0b6/emojis.js#L4) and change them to yours
 * update ready.js in [events/ready.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/main/events/ready.js) to your [logs channel](https://github.com/Shinpi-Tekita/advanced-handler/blob/a3a0461549f865440464dce3a38e6fa5cb99b0b6/events/ready.js#L17)
 * To change prefix go to [events/messageCreate.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/a3a0461549f865440464dce3a38e6fa5cb99b0b6/events/messageCreate.js#L24)
-
-> The prefix for the bot is $
 
 ### Packages! 
 * discord.js
@@ -23,8 +20,9 @@
 * spud.js
 * moment
 * moment-duration-format
-* 
 
+### Other! 
+> The prefix for the bot is $
 > This is an advanced handler that my bot [Gentleman the cat bot](https://top.gg/bot/870413726711435297) uses.
 > I didn't make the handler i just modified it to make it easy to use, the original one is from [here](https://github.com/reconlx/djs-base-handler). 
 > I hope yall enjoy using this handler as I enjoy using it for my bot.
