@@ -14,7 +14,7 @@ module.exports = {
       .findOne({
         Guild: message.guildId,
       })
-      .catch((err) => {});
+      .catch((err) => { });
     if (data2) {
       custom = data2.Prefix;
     }
@@ -25,10 +25,9 @@ module.exports = {
 
     if (!args[0]) {
       let embed = new MessageEmbed()
-        .setTitle(`**${client.emo.happy} | Need Help?**`)
+        .setTitle(`**${client.emo.smug} | Need Help?**`)
         .setDescription(
-          `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${
-            client.slashCommands.size + client.commands.size
+          `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${client.slashCommands.size + client.commands.size
           }\`\n> **[Invite Me](https://discord.com/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands)**\n> **[Support Server](https://discord.gg/PS38kJh9VC)**\n> **[Vote](https://top.gg/bot/870413726711435297/vote)**\n> **[Website](https://shinpitekita.repl.co/home)**`
         )
         .setColor("#6F8FAF")
@@ -39,8 +38,8 @@ module.exports = {
       embeds.push(embed);
 
       //Slash Commands
-      let fetched = await client.application.commands.fetch();
-      let helpCommand = fetched.filter((v) => v.name === "help");
+      let slashCommands = client.slashCommands;
+      let helpCommand = slashCommands.filter((v) => v.name === "help");
       readdirSync("./SlashCommands/").forEach(async (dir) => {
         const commands = readdirSync(`./SlashCommands/${dir}/`).filter((file) =>
           file.endsWith(".js")
@@ -50,7 +49,7 @@ module.exports = {
 
           if (!file.name) return "No command name.";
           let name = file.name.replace(".js", "");
-          let commandID = fetched.filter((v) => v.name === name);
+          let commandID = slashCommands.filter((v) => v.name === name);
           return `</${name}:${commandID.first().id}>`;
         });
 
@@ -63,8 +62,7 @@ module.exports = {
           new MessageEmbed()
             .setTitle(`**${data.name}**`)
             .setDescription(
-              `**For more information on a command do </${
-                helpCommand.first().name
+              `**For more information on a command do </${helpCommand.first().name
               }:${helpCommand.first().id}> <command>\`\n\n${data.value}**`
             )
             .setColor("#6F8FAF")
@@ -73,7 +71,7 @@ module.exports = {
       });
 
       let sc = await client.commands
-        .filter((c) => c?.owner !== true && c?.staff !== true)
+        .filter(c => c?.owner !== true && c?.staff !== true)
         .map((c) => {
           return `\`${c.name} - ${c.description}\`` || "No Name";
         });
@@ -94,7 +92,7 @@ module.exports = {
         new MessageEmbed()
           .setTitle(`**Credits**`)
           .setDescription(
-            `Owner: <@748597084134834186>\nDevelopers: <@761091991080665118>, <@768362780545384449>\n\nI was created on ${moment
+            `Owner: <@748597084134834186>\n\nI was created on ${moment
               .utc(client.user.createdAt)
               .format("dddd, MMMM Do YYYY")}`
           )
@@ -153,12 +151,10 @@ module.exports = {
           {
             name: "USAGE:",
             value: command.usage
-              ? `\`${command?.type === "msg" ? `${custom}` : "/"}${
-                  command.name
-                } ${command.usage}\``
-              : `\`${command?.type === "msg" ? `${custom}` : "/"}${
-                  command.name
-                }\``,
+              ? `\`${command?.type === "msg" ? `${custom}` : "/"}${command.name
+              } ${command.usage}\``
+              : `\`${command?.type === "msg" ? `${custom}` : "/"}${command.name
+              }\``,
           },
           {
             name: "DESCRIPTION:",

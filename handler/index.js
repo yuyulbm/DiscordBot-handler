@@ -36,13 +36,18 @@ module.exports = async (client) => {
     const command = require(value);
     if (!command?.name) return;
     client.slashCommands.set(command.name, command);
-
     if (["MESSAGE", "USER"].includes(command.type)) delete command.description;
     arrayOfSlashCommands.push(command);
   });
   client.on("ready", async () => {
-    await client.application.commands.set(arrayOfSlashCommands);
+    await client.application.commands.set(arrayOfSlashCommands).then((cmd) => {
+      cmd.map((cm) => {
+        let obj = client.slashCommands.get(cm.name);
+        obj.id = cm.id;
+      });
+    });
   });
+  
   mongoose.set("strictQuery", true);
   await mongoose
     .connect("Your mongo db string")
