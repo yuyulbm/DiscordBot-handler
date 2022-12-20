@@ -1,5 +1,5 @@
 # Advanced handler for Discord.js 
-[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/Shinpi-Tekita/advanced-handler/releases/tag/v1.0.3)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/discord.js/v/13.12.0)
+[![discord](https://img.shields.io/badge/discord-join%20our%20server-5865F2.svg?style=flat-square&logo=discord)](https://discord.gg/j3YamACwPu)  [![version](https://img.shields.io/badge/version-1.0.3-brightgreen.svg?style=flat-square)](https://github.com/Shinpi-Tekita/advanced-handler/releases/tag/v1.0.3)  [![discord.js](https://img.shields.io/badge/discord.js-v13-CB3837.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/discord.js/v/13.12.0) [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/home)
 
 
 ### Before using this! 
@@ -11,6 +11,19 @@
 * To change prefix go to [events/messageCreate.js](https://github.com/Shinpi-Tekita/advanced-handler/blob/a3a0461549f865440464dce3a38e6fa5cb99b0b6/events/messageCreate.js#L24)
 
 > The prefix for the bot is $
+
+### Packages! 
+* discord.js
+* @stdlib/error-to-json
+* mongoose
+* glob
+* util
+* pretty-ms
+* fs
+* spud.js
+* moment
+* moment-duration-format
+* 
 
 > This is an advanced handler that my bot [Gentleman the cat bot](https://top.gg/bot/870413726711435297) uses.
 > I didn't make the handler i just modified it to make it easy to use, the original one is from [here](https://github.com/reconlx/djs-base-handler). 
