@@ -1,5 +1,4 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const { readdirSync } = require("fs");
 const { ButtonPaginationBuilder } = require("spud.js");
 const moment = require("moment");
 const prefix = require("../../models/prefix");
@@ -47,25 +46,22 @@ module.exports = {
       embeds.push(embed);
 
       //Slash Commands
-      let slashCommands = client.slashCommands;
-      let helpCommand = slashCommands.filter((v) => v.name === "help");
-      const subCommands = [];
-      readdirSync("./SlashCommands/").forEach(async (dir) => {
-        const commands = readdirSync(`./SlashCommands/${dir}/`).filter((file) =>
-          file.endsWith(".js")
-        );
-        const cmds = commands.map((command) => {
-          let file = require(`../../SlashCommands/${dir}/${command}`);
-          if (!file.name) return "No command name.";
-          let name = file.name.replace(".js", "");
-          let commandID = slashCommands.filter((v) => v.name === name);
-          return `</${name}:${commandID.first().id}>`;
-        });
+      const directories = [
+        ...new Set(client.slashCommands.map((cmd) => cmd.directory)),
+      ];
+      const helpCommand = client.slashCommands.filter((v) => v.name === "help");
+      directories.map((dir) => {
+        const getCommands = client.slashCommands
+          .filter((cmd) => cmd.directory === dir)
+          .map((cmd) => {
+            return `</${cmd.name}:${cmd.id}>`;
+          });
 
         let data = new Object();
         data = {
           name: dir.toUpperCase(),
-          value: cmds.length === 0 ? "In progress." : cmds.join(", "),
+          value:
+            getCommands.length === 0 ? "In progress." : getCommands.join(", "),
         };
         embeds.push(
           new MessageEmbed()
@@ -102,7 +98,7 @@ module.exports = {
         new MessageEmbed()
           .setTitle(`**Credits**`)
           .setDescription(
-            `Owner: <@748597084134834186>\n\nI was created on ${moment
+            `Owner: <@748597084134834186>\nDevelopers: <@761091991080665118>, <@768362780545384449>\n\nI was created on ${moment
               .utc(client.user.createdAt)
               .format("dddd, MMMM Do YYYY")}`
           )
@@ -119,11 +115,11 @@ module.exports = {
           },
           true
         )
-        .trash(true)
         .setFilter(interaction.user.id, {
           content: "This interaction isn't for you.",
           ephemeral: true,
         })
+        .trash(true)
         .fastSkip(true);
 
       pagination.send();
@@ -188,7 +184,7 @@ module.exports = {
           }),
         })
         .setTimestamp()
-        .setColor("#6F8FAF");
+        .setColor("#1F51FF");
       return interaction.reply({
         embeds: [embed],
       });

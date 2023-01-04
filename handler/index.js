@@ -27,6 +27,7 @@ module.exports = async (client) => {
   eventFiles.map((value) => require(value));
 
   // Slash Commands handler
+
   const slashCommands = await globPromise(
     `${process.cwd()}/SlashCommands/*/*.js`
   );
@@ -34,11 +35,15 @@ module.exports = async (client) => {
   const arrayOfSlashCommands = [];
   slashCommands.map((value) => {
     const command = require(value);
+    const splitted = value.split("/");
+    const directory = splitted[splitted.length - 2];
     if (!command?.name) return;
-    client.slashCommands.set(command.name, command);
+    const properties = { directory, ...command };
+    client.slashCommands.set(command.name, properties);
     if (["MESSAGE", "USER"].includes(command.type)) delete command.description;
     arrayOfSlashCommands.push(command);
   });
+
   client.on("ready", async () => {
     await client.application.commands.set(arrayOfSlashCommands).then((cmd) => {
       cmd.map((cm) => {
@@ -47,7 +52,7 @@ module.exports = async (client) => {
       });
     });
   });
-  
+
   mongoose.set("strictQuery", true);
   await mongoose
     .connect("Your mongo db string")
