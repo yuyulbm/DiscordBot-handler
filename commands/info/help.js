@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const moment = require("moment");
 const { ButtonPaginationBuilder } = require("spud.js");
 const prefix = require("../../models/prefix");
@@ -23,7 +23,7 @@ module.exports = {
     }
 
     if (!args[0]) {
-      let embed = new MessageEmbed()
+      let embed = new EmbedBuilder()
         .setTitle(`**${client.emo.smug} | Need Help?**`)
         .setDescription(
           `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${
@@ -56,7 +56,7 @@ module.exports = {
             getCommands.length === 0 ? "In progress." : getCommands.join(", "),
         };
         embeds.push(
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle(`**${data.name}**`)
             .setDescription(
               `**For more information on a command do </${
@@ -74,7 +74,7 @@ module.exports = {
         });
 
       embeds.push(
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle(`**Message Commands**`)
           .setDescription(
             `**To use these commands do \`${custom}help <command>\`\n\n${sc.join(
@@ -86,7 +86,7 @@ module.exports = {
       );
 
       embeds.push(
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle(`**Credits**`)
           .setDescription(
             `Owner: <@748597084134834186>\nDevelopers: <@761091991080665118>, <@768362780545384449>\n\nI was created on ${moment
@@ -121,7 +121,7 @@ module.exports = {
         client.slashCommands.get(args[0].toLowerCase());
 
       if (!command) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setTitle(`Invalid Command! Use </help:0> for all of my commands!`)
           .setColor("#1F51FF");
         return message.reply({
@@ -129,7 +129,7 @@ module.exports = {
         });
       }
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("Command Details:")
         .addFields(
           {

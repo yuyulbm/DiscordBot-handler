@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 const moment = require("moment");
 require("moment-duration-format");
@@ -11,7 +11,7 @@ module.exports = {
   usage: "",
   type: "msg",
   run: async (client, message, args) => {
-    let embed1 = new MessageEmbed()
+    let embed1 = new EmbedBuilder()
       .setDescription("🏓 | Ping ...")
       .setColor("#6F8FAF");
 
@@ -44,7 +44,7 @@ module.exports = {
     if (ping >= 400) color = pings.red;
     if (ping >= 1000) color = pings.snail;
 
-    let info = new MessageEmbed()
+    let info = new EmbedBuilder()
       .setTitle("🏓 | Pong!")
       .addFields(
         {

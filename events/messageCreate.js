@@ -1,9 +1,9 @@
 const client = require("../index");
 const {
-  MessageEmbed,
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
   Permissions,
-  MessageActionRow,
-  MessageButton,
 } = require("discord.js");
 const cooldownSchema = require("../models/cooldown");
 const prettyMilliseconds = require("pretty-ms");
@@ -31,20 +31,20 @@ client.on("messageCreate", async (message) => {
   if (!message.guild) return;
   const p = await client.prefix(message);
   const mentionRegex = new RegExp(`^<@!?${client.user.id}>( |)$`);
-  const row = new MessageActionRow().addComponents(
-    new MessageButton()
+  const row = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
       .setLabel("Invite Me")
       .setStyle("LINK")
       .setURL(
         "https://discord.com/api/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands"
       ),
-    new MessageButton()
+    new ButtonBuilder()
       .setLabel("Support Server")
       .setStyle("LINK")
       .setURL("https://discord.gg/j3YamACwPu")
   );
   if (message.content.match(mentionRegex)) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setDescription(
         `**Hey ${message.author.username}, My prefix is \`${p}\` If you need any help you can join the support server.**`
       )
@@ -82,7 +82,7 @@ client.on("messageCreate", async (message) => {
     if (!message.member.permissions.has(command.userPerms || [])) {
       return message.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle("Missing Permisssion")
             .setDescription(
               "My apologies but you do not have the required permissions to run this command."
@@ -102,7 +102,7 @@ client.on("messageCreate", async (message) => {
     if (!message.guild.me.permissions.has(command.botPerms || [])) {
       return message.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle("Missing Permisssion")
             .setDescription(
               "My apologies but I do not have the required permissions to run this command."
@@ -120,7 +120,7 @@ client.on("messageCreate", async (message) => {
     }
 
     if (message.content.length > command.msgLimit) {
-      let limit = new MessageEmbed()
+      let limit = new EmbedBuilder()
         .setDescription(
           `My apologies please keep the message content under ${command.msgLimit} characters.`
         )
@@ -173,7 +173,7 @@ client.on("messageCreate", async (message) => {
             .replace("[cooldown]", `${timecommand}`)
             .replace("[user]", `${message.author.username}`);
 
-          let cooldownEmbed = new MessageEmbed()
+          let cooldownEmbed = new EmbedBuilder()
             .setTitle(
               `${
                 command.cooldownMsg ? command.cooldownMsg.title : "Slow Down!"

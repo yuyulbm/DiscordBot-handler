@@ -1,7 +1,8 @@
-const { Client, Collection, MessageEmbed } = require("discord.js");
+const { Client, Collection, EmbedBuilder } = require("discord.js");
 
-const client = new Client({
-  intents: 32767,
+const client = new Discord.Client({
+  intents: ["Guilds", "GuildMessages", "MessageContent"],
+  partials: ["Channel", "Reaction", "Message"],
   restTimeOffset: 0,
   allowedMentions: {
     parse: ["roles", "users"],
@@ -23,7 +24,7 @@ let toJSON = require("@stdlib/error-to-json");
 process.on("unhandledRejection", (reason, p) => {
   let error = toJSON(reason);
   console.log(reason);
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setAuthor({
       name: `${error.name}`,
       iconURL: client.user.displayAvatarURL({
@@ -59,7 +60,7 @@ process.on("unhandledRejection", (reason, p) => {
 
 process.on("uncaughtException", (err, origin) => {
   console.log(err, origin);
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setAuthor({
       name: `${client.user.username} Error Catcher`,
       iconURL: client.user.displayAvatarURL({
@@ -83,7 +84,7 @@ process.on("uncaughtException", (err, origin) => {
 
 process.on("multipleResolves", (type, promise, reason) => {
   console.log(type, promise, reason);
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setAuthor({
       name: `${client.user.username} Error Catcher`,
       iconURL: client.user.displayAvatarURL({
@@ -113,9 +114,7 @@ process.on("multipleResolves", (type, promise, reason) => {
 
 function trim(str, max) {
   if (!str) str = "No output recived.";
-  return str?.length > max
-    ? `${str?.slice(0, max - 3)}...`
-    : str;
+  return str?.length > max ? `${str?.slice(0, max - 3)}...` : str;
 }
 
 client.login("Your Bot Token");

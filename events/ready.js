@@ -1,7 +1,7 @@
-const { MessageEmbed, MessageAttachment } = require("discord.js");
+const { EmbedBuilder, Events } = require("discord.js");
 const client = require("../index");
 
-client.on("ready", async () => {
+client.on(Events.ClientReady, async () => {
   let servers = client.guilds.cache.size;
   let servercount = client.guilds.cache.reduce((a, b) => a + b.memberCount, 0);
   console.log(
@@ -9,7 +9,7 @@ client.on("ready", async () => {
   );
   console.log(`Ping: ${client.ws.ping}`);
 
-  let ready = new MessageEmbed()
+  let ready = new EmbedBuilder()
     .setTitle(`**${client.user.tag} is back online ${client.emo.happy}**`)
     .setDescription(`Ping: ${client.ws.ping}`)
     .setColor("GREEN")
@@ -17,7 +17,13 @@ client.on("ready", async () => {
   client.channels.cache.get("Your logs channel ID").send({
     embeds: [ready],
   });
-  client.user.setActivity(`/help | ${servers} servers`, {
-    type: "PLAYING",
+  client.user.setPresence({
+    activities: [
+      {
+        name: `/help | ${servers} servers`,
+        type: 3,
+      },
+    ],
+    status: "idle",
   });
 });

@@ -1,4 +1,9 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const {
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+} = require("discord.js");
 
 module.exports = {
   name: "avatar",
@@ -14,7 +19,7 @@ module.exports = {
   run: async (client, interaction, args) => {
     const user =
       (await interaction.options.getUser("user")) || interaction.user;
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle(`${user.tag}'s  Avatar`)
       .setImage(
         user.displayAvatarURL({
@@ -25,18 +30,18 @@ module.exports = {
       .setColor("#6F8FAF")
       .setTimestamp();
 
-    const linksRow = new MessageActionRow().addComponents(
-      new MessageButton()
+    const linksRow = new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
         .setLabel("JPG")
-        .setStyle("LINK")
+        .setStyle(ButtonStyle.Link)
         .setURL(`${user.displayAvatarURL({ format: "jpg", size: 1024 })}`),
-      new MessageButton()
+      new ButtonBuilder()
         .setLabel("PNG")
-        .setStyle("LINK")
+        .setStyle(ButtonStyle.Link)
         .setURL(`${user.displayAvatarURL({ format: "png", size: 1024 })}`),
-      new MessageButton()
+      new ButtonBuilder()
         .setLabel("GIF")
-        .setStyle("LINK")
+        .setStyle(ButtonStyle.Link)
         .setURL(
           `${user.displayAvatarURL({
             format: "gif",
@@ -44,9 +49,9 @@ module.exports = {
             dynamic: true,
           })}`
         ),
-      new MessageButton()
+      new ButtonBuilder()
         .setLabel("WEBP")
-        .setStyle("LINK")
+        .setStyle(ButtonStyle.Link)
         .setURL(`${user.displayAvatarURL({ format: "webp", size: 1024 })}`)
     );
 

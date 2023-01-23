@@ -1,12 +1,5 @@
 const prefixSchema = require("../../models/prefix");
-let {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton,
-  MessageSelectMenu,
-  Permissions,
-  CommandInteraction,
-} = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
   name: "prefix",
@@ -25,6 +18,7 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     const prefix = interaction.options.getString("prefix");
+    let errEmbed = new EmbedBuilder().setColor("#6F8FAF");
 
     prefixSchema.findOne(
       {

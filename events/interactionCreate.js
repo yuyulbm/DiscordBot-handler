@@ -1,8 +1,9 @@
 const client = require("../index");
+const { EmbedBuilder, Events } = require("discord.js");
 
-client.on("interactionCreate", async (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
   // Slash Command Handling
-  if (interaction.isCommand()) {
+  if (interaction.isChatInputCommand()) {
     const cmd = client.slashCommands.get(interaction.commandName);
     if (!cmd)
       return interaction.followUp({
@@ -26,7 +27,7 @@ client.on("interactionCreate", async (interaction) => {
     if (!interaction.memberPermissions.has(cmd.userPerms || []))
       return interaction.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle("Missing Permisssion")
             .setDescription(
               "My Apologies But You Do Not Have The Required Permissions To Use This Command."
@@ -45,7 +46,7 @@ client.on("interactionCreate", async (interaction) => {
     if (!interaction.guild.me.permissions.has(cmd.botPerms || []))
       return interaction.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle("Missing Permisssion")
             .setDescription(
               "My Apologies But I Do Not Have The Required Permissions To Run This Command."
