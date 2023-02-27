@@ -22,7 +22,7 @@ module.exports = {
           size: 1024,
         })
       )
-      .setColor("#6F8FAF")
+      .setColor("RANDOM")
       .setTimestamp();
 
     const linksRow = new MessageActionRow().addComponents(

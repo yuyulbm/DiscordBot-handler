@@ -18,17 +18,19 @@ module.exports = {
       custom = data2.Prefix;
     }
     if (!data2) {
-      const prefix = "$";
+      const prefix = client.config.prefix;
       custom = prefix;
     }
 
     if (!args[0]) {
       let embed = new MessageEmbed()
-        .setTitle(`**${client.emo.smug} | Need Help?**`)
+        .setTitle(`**${client.emo.happy} | Need Help?**`)
         .setDescription(
           `> **Prefix: **\`${custom}\`\n> **Total Commands: **\`${
             client.slashCommands.size + client.commands.size
-          }\`\n> **[Invite Me](https://discord.com/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands)**\n> **[Support Server](https://discord.gg/PS38kJh9VC)**\n> **[Vote](https://top.gg/bot/870413726711435297/vote)**\n> **[Website](https://shinpitekita.repl.co/home)**`
+          }\`\n> **[Invite Me](${
+            client.config.invite
+          })**\n> **[Support Server](${client.config.server})**`
         )
         .setColor("#1F51FF")
         .setTimestamp();
@@ -80,18 +82,6 @@ module.exports = {
             `**To use these commands do \`${custom}help <command>\`\n\n${sc.join(
               ",\n"
             )}**`
-          )
-          .setColor("#1F51FF")
-          .setTimestamp()
-      );
-
-      embeds.push(
-        new MessageEmbed()
-          .setTitle(`**Credits**`)
-          .setDescription(
-            `Owner: <@748597084134834186>\nDevelopers: <@761091991080665118>, <@768362780545384449>\n\nI was created on ${moment
-              .utc(client.user.createdAt)
-              .format("dddd, MMMM Do YYYY")}`
           )
           .setColor("#1F51FF")
           .setTimestamp()

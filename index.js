@@ -114,9 +114,7 @@ process.on("multipleResolves", (type, promise, reason) => {
 
 function trim(str, max) {
   if (!str) str = "No output recived.";
-  return str?.length > max
-    ? `${str?.slice(0, max - 3)}...`
-    : str;
+  return str?.length > max ? `${str?.slice(0, max - 3)}...` : str;
 }
 
 client.login(client.config.token);

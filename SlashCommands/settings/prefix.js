@@ -18,7 +18,7 @@ module.exports = {
   ],
   run: async (client, interaction, args) => {
     const prefix = interaction.options.getString("prefix");
-    let errEmbed = new MessageEmbed().setColor("#6F8FAF");
+    let errEmbed = new MessageEmbed().setColor("RED");
 
     prefixSchema.findOne(
       {
@@ -32,7 +32,7 @@ module.exports = {
           return interaction.reply({
             embeds: [
               errEmbed.setDescription(
-                `**Server prefix has been reset to \`\`\`>\`\`\`**`
+                `**Server prefix has been reset to \`\`\`${client.config.prefix}\`\`\`**`
               ),
             ],
           });

@@ -7,7 +7,7 @@ const {
 } = require("discord.js");
 const cooldownSchema = require("../models/cooldown");
 const prettyMilliseconds = require("pretty-ms");
-const owners_id = client.developer;
+const owners_id = client.config.owner;
 const prefix = require("../models/prefix");
 
 client.prefix = async function (message) {
@@ -21,7 +21,7 @@ client.prefix = async function (message) {
     custom = data.Prefix;
   }
   if (!data) {
-    const prefix = "$";
+    const prefix = client.config.prefix;
     custom = prefix;
   }
   return custom;
@@ -35,13 +35,11 @@ client.on("messageCreate", async (message) => {
     new MessageButton()
       .setLabel("Invite Me")
       .setStyle("LINK")
-      .setURL(
-        "https://discord.com/api/oauth2/authorize?client_id=870413726711435297&permissions=1103203134710&scope=bot%20applications.commands"
-      ),
+      .setURL(client.config.invite),
     new MessageButton()
       .setLabel("Support Server")
       .setStyle("LINK")
-      .setURL("https://discord.gg/j3YamACwPu")
+      .setURL(client.config.server)
   );
   if (message.content.match(mentionRegex)) {
     const embed = new MessageEmbed()
@@ -124,7 +122,7 @@ client.on("messageCreate", async (message) => {
         .setDescription(
           `My apologies please keep the message content under ${command.msgLimit} characters.`
         )
-        .setColor("#6F8FAF");
+        .setColor("RED");
       return message.reply({
         embeds: [limit],
       });
@@ -181,7 +179,7 @@ client.on("messageCreate", async (message) => {
             )
             .setDescription(cooldownMsg)
             .setColor(
-              `${command.cooldownMsg ? command.cooldownMsg.color : "#6F8FAF"}`
+              `${command.cooldownMsg ? command.cooldownMsg.color : "RED"}`
             );
           //return message.reply({embeds: [cooldownEmbed]})
           return message.react("⏳");

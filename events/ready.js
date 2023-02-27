@@ -14,7 +14,7 @@ client.on("ready", async () => {
     .setDescription(`Ping: ${client.ws.ping}`)
     .setColor("GREEN")
     .setTimestamp();
-  client.channels.cache.get("Your logs channel ID").send({
+  client.channels.cache.get(client.config.logchannel).send({
     embeds: [ready],
   });
   client.user.setActivity(`/help | ${servers} servers`, {
