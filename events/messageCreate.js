@@ -48,7 +48,7 @@ client.on("messageCreate", async (message) => {
       .setDescription(
         `**Hey ${message.author.username}, My prefix is \`${p}\` If you need any help you can join the support server.**`
       )
-      .setColor("#6F8FAF");
+      .setColor("GREEN");
     message
       .reply({
         embeds: [embed],
@@ -93,13 +93,13 @@ client.on("messageCreate", async (message) => {
                 .map((perm) => nicerPermissions(perm))
                 .join("\n")}\`\`\``
             )
-            .setColor("#6F8FAF"),
+            .setColor("RED"),
         ],
         ephemeral: true,
       });
     }
 
-    if (!message.guild.me.permissions.has(command.botPerms || [])) {
+    if (!message.guild.members.me.permissions.has(command.botPerms || [])) {
       return message.reply({
         embeds: [
           new MessageEmbed()
@@ -113,7 +113,7 @@ client.on("messageCreate", async (message) => {
                 .map((perm) => nicerPermissions(perm))
                 .join("\n")}\`\`\``
             )
-            .setColor("#6F8FAF"),
+            .setColor("RED"),
         ],
         ephemeral: true,
       });

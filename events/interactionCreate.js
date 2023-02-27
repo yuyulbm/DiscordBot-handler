@@ -43,12 +43,12 @@ client.on("interactionCreate", async (interaction) => {
                 .map((perm) => nicerPermissions(perm))
                 .join("\n")}\`\`\``
             )
-            .setColor("#6F8FAF"),
+            .setColor("RED"),
         ],
         ephemeral: true,
       });
 
-    if (!interaction.guild.me.permissions.has(cmd.botPerms || []))
+    if (!interaction.guild.members.me.permissions.has(cmd.botPerms || []))
       return interaction.reply({
         embeds: [
           new MessageEmbed()
@@ -62,7 +62,7 @@ client.on("interactionCreate", async (interaction) => {
                 .map((perm) => nicerPermissions(perm))
                 .join("\n")}\`\`\``
             )
-            .setColor("#6F8FAF"),
+            .setColor("RED"),
         ],
         ephemeral: true,
       });
