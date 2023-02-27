@@ -48,7 +48,7 @@ process.on("unhandledRejection", (reason, p) => {
       }
     )
     .setTimestamp()
-    .setColor("#6F8FAF")
+    .setColor("RED")
     .setFooter({
       text: `httpStatus: ${error.httpStatus}`,
     });
@@ -72,7 +72,7 @@ process.on("uncaughtException", (err, origin) => {
       value: `\`\`\`js\n${trim(err, 1018)}\n\`\`\``,
     })
     .setTimestamp()
-    .setColor("#6F8FAF")
+    .setColor("RED")
     .setFooter({
       text: `[ AntiCrash ]`,
     });
@@ -102,7 +102,7 @@ process.on("multipleResolves", (type, promise, reason) => {
       }
     )
     .setTimestamp()
-    .setColor("#6F8FAF")
+    .setColor("RED")
     .setFooter({
       text: `[ AntiCrash ]`,
     });
