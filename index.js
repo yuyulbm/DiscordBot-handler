@@ -9,15 +9,16 @@ const client = new Client({
   },
 });
 
-let errChannel = "Your logs channel id";
-
 module.exports = client;
 client.commands = new Collection();
 client.slashCommands = new Collection();
 client.emo = require("./emojis");
 client.developer = ["Your discord user ID"];
+client.config = require("./config.json");
 
 require("./handler")(client);
+
+let errChannel = client.channels.cache.get(client.config.logchannel);
 
 let toJSON = require("@stdlib/error-to-json");
 process.on("unhandledRejection", (reason, p) => {
@@ -118,4 +119,4 @@ function trim(str, max) {
     : str;
 }
 
-client.login("Your Bot Token");
+client.login(client.config.token);
