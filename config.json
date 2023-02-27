@@ -1,0 +1,6 @@
+{
+    "token": "put_your_token_here",
+    "mongo": "put_your_mongoDB_string_here",
+    "logchannel": "put_your_logs_channel_id_here",
+    "prefix": "$"
+}
