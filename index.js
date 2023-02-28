@@ -14,7 +14,7 @@ client.commands = new Collection();
 client.slashCommands = new Collection();
 client.emo = require("./emojis");
 client.developer = ["Your discord user ID"];
-client.config = require("./config.json");
+client.config = require("./config.js");
 
 require("./handler")(client);
 
