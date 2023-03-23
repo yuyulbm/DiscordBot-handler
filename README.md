@@ -23,6 +23,8 @@ The prefix for the bot is $. This is an advanced handler that my bot [Gentleman 
 
 Join the [discord server](https://discord.gg/j3YamACwPu) for additional help.
 
+Only open pull requests for bug fixes, I want to keep the code as clean as possible, thanks!
+
 <p>
   <a href="https://discord.gg/j3YamACwPu" target="_blank"> 
     <img src="https://discord.com/api/guilds/760641617136320522/widget.png?style=banner2" alt="Discord Server">
