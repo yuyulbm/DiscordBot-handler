@@ -29,4 +29,5 @@ Only open pull requests for bug fixes, I want to keep the code as clean as possi
   <a href="https://discord.gg/j3YamACwPu" target="_blank"> 
     <img src="https://discord.com/api/guilds/760641617136320522/widget.png?style=banner2" alt="Discord Server">
   </a>
+  <a href='https://ko-fi.com/H2H6JPJJV' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 </p>
